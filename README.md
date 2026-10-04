@@ -1,6 +1,6 @@
 # CBM Detect
 
-Commodore model detection displays model, firmware revision, text columns/rows, and BASIC version
+Commodore model detection displays model, firmware revision, text columns/rows, BASIC version, and PAL/NTSC
 
 Supports Vic-20, C64, 264 series (C116, C16, plus/4), C128 including C64 running 64'er BASIC 3.5.  Displays detected RAM for 264 series.
 
@@ -30,6 +30,7 @@ Output:
 ````
  MOD  REV   X   Y  VER
   64    3  40  25  2
+ PAL
 ````
 
 ![screenshot.png](screenshot.png)

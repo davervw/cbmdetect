@@ -13,10 +13,13 @@
 210 ifm<>20andm<>64thenx=0:y=0
 220 ifm=128thenx=peek(7)+1:y=peek(8)+1
 230 ifm=264thenx=peek(2035):y=peek(2036)
+235 gosub 540
 240 print " mod  rev   x   y  ver"
 250 a=m:gosub 340
 260 a=rv:gosub 340
 270 print x;y;v
+275 ifpalthenprint" pal"
+276 ifnotpalthenprint" ntsc"
 280 if m<>264 then end
 290 ram=(peek(56)-peek(44))*256/1024
 300 ram=int((ram+8)/16)*16
@@ -28,3 +31,29 @@
 360 if a<10 then print " ";
 370 print a;
 380 return
+390 :
+395 rem c64 max raster minus 256 ml
+400 data 120,173,4,144,48,4,173,4
+410 data 144,16,251,170,173,4,144,48
+420 data 250,173,4,144,16,251,168,173
+430 data 4,144,48,250,88,134,255,152
+440 data 197,255,176,2,165,255,88,96
+450 data -1
+460 :
+480 data 120,44,17,208,48,251,44,17
+490 data 208,16,251,173,18,208,240,251
+500 data 173,18,208,240,4,133,255,208
+510 data 247,165,255,88,96
+520 data -1
+530 :
+540 rem pal detection
+550 if m=128 then pal=(peek(2563)=255):return
+560 if m=264 then pal=((peek(65287)and64)=0):return
+570 if m<>64 then 610
+575 if v=2 thenpal=(peek(678)=1):return
+580 fori=0to40:reada:next
+590 fori=0to28:reada:poke828+i,a:next
+600 sys 828:pal=(peek(780)>6):return
+610 if m<>20 then return
+630 fori=0to39:reada:poke828+i,a:next
+640 sys 828:pal=(peek(780)>130):return
