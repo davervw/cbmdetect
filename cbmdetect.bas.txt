@@ -1,0 +1,30 @@
+100 rem github.com/davervw/cbmdetect
+105 rem mit license
+110 :
+120 rv=peek(65408):rem $ff80 kernal rev
+130 if er=0 then v=2
+140 if er=255 or er=-1 then v=3.5
+150 if rv=1 then m=128:v=7
+160 if er=-1 and rv=0 thenm=264:goto200
+170 if rv=170 or rv=0 or rv=3 then m=64
+180 if rv=22 then m=20
+190 if rv=255 then m=264
+200 sys 65517:x=peek(781):y=peek(782)
+210 ifm<>20andm<>64thenx=0:y=0
+220 ifm=128thenx=peek(7)+1:y=peek(8)+1
+230 ifm=264thenx=peek(2035):y=peek(2036)
+240 print " mod  rev   x   y  ver"
+250 a=m:gosub 340
+260 a=rv:gosub 340
+270 print x;y;v
+280 if m<>264 then end
+290 ram=(peek(56)-peek(44))*256/1024
+300 ram=int((ram+8)/16)*16
+310 print str$(ram)"k ram detected"
+320 end
+330 :
+340 rem print using "###" equivalent
+350 if a<100 then print " ";
+360 if a<10 then print " ";
+370 print a;
+380 return
