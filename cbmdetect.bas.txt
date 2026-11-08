@@ -6,7 +6,7 @@
 140 if er=255 or er=-1 then v=3.5
 150 if rv=1 then m=128:v=7
 160 if er=-1 and rv=0 thenm=264:goto200
-170 if rv=170 or rv=0 or rv=3 then m=64
+170 if rv=170 or rv=0 or rv=3 or rv=100 or rv=67 then m=64
 180 if rv=22 then m=20
 190 if rv=255 then m=264
 200 sys 65517:x=peek(781):y=peek(782)
